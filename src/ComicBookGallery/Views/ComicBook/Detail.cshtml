@@ -30,7 +30,15 @@
         <p>@Html.Raw(description)</p>
 
         <h2>Artists</h2>
-        <p>@artists</p>
+        <p>
+            <ul>
+            
+            @foreach (var artist in artists)
+            {
+               <li>@artist</li>
+            }
+            </ul>
+        </p>
     </div>
 </body>
 </html>
