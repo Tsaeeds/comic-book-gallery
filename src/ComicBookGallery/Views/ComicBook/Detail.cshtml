@@ -3,31 +3,44 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Model.DisplayText;
-   
+
 }
 
 <!DOCTYPE html>
 
+<h2>@Model.DisplayText</h2>
 
-<div>
-    <h1>@Model.SeriesTitle</h1>
-    <h2>@Model.IssueNumber</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="well">
+            <h5><label>Series Title:</label>@Model.SeriesTitle</h5>
+            <h5>
+                <label>Issue #:</label>@Model.IssueNumber/h5>
+                <h5><label>Favorite: </label>@(Model.Favorite ? "Yes" : "No")</h5>
 
-    <h2>Description</h2>
-    <p>@Html.Raw(Model.DescriptionHtml)</p>
+                @if (Model.Artist.Length > 0)
+            {
+                <h2>Artists</h2>
+                <div>
+                    <ul>
 
-    @if (Model.Artist.Length > 0)
-    {
-    <h2>Artists</h2>
-    <div>
-        <ul>
-            
-        @foreach (var artist in Model.Artist)
-        {
-            <li>@artist.Role: @artist.Name</li>
+                        @foreach (var artist in Model.Artist)
+                    {
+                        <li>@artist.Role: @artist.Name</li>
+                }
+
+                    </ul>
+                </div>
         }
-        </ul>
+        </div>
+                <h2>Description</h2>
+                <p>@Html.Raw(Model.DescriptionHtml)</p>
     </div>
-    }
+    <div class="col-md-6">
+        <img src="/Images/@Model.CoverImageFilaName"
+             alt="@Model.DisplayText" class="img-responsive" />
+    </div>
 </div>
+
+
 
